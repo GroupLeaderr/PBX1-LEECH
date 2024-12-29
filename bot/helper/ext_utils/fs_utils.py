@@ -1,5 +1,3 @@
-
-
 #!/usr/bin/env python3
 from aiofiles.os import remove as aioremove, path as aiopath, listdir, rmdir, makedirs
 from aioshutil import rmtree as aiormtree, move
@@ -182,10 +180,9 @@ async def join_files(path):
 
 
 async def edit_metadata(listener, base_dir: str, media_file: str, outfile: str, metadata: str = ''):
-    cmd = [bot_cache['pkgs'][2], '-hide_banner', '-ignore_unknown', '-i', media_file, '-metadata', f'title={metadata}',
-           '-metadata:s:v', f'title={metadata}', '-metadata', f'Comment= ', '-metadata', f'Copyright= ', '-metadata', f'AUTHOR=𝗣𝗕𝗫𝟭 𝗕𝗢𝗧𝗦', '-metadata', f'Encoded by= ', '-metadata', f'Encoded_by= ', '-metadata', f'Description= ', '-metadata', f'description= ', '-metadata', f'SUMMARY= ', '-metadata', f'WEBSITE= ', '-metadata:s:a', f'title={metadata}',
-           '-metadata:s:s', f'title={metadata}', '-map', '0:v:0?', '-map', '0:a:?', '-map', '0:s:?', '-c:v', 'copy', '-c:a', 'copy', '-c:s',
-           'copy', outfile, '-y']
+    cmd = [bot_cache['pkgs'][2], '-hide_banner', '-ignore_unknown', '-i', media_file, '-metadata', f'title={metadata}', '-metadata:s:v',
+           f'title={metadata}', '-metadata:s:a', f'title={metadata}', '-metadata:s:s', f'title={metadata}', '-map', '0:v:0?',
+           '-map', '0:a:?', '-map', '0:s:?', '-c:v', 'copy', '-c:a', 'copy', '-c:s', 'copy', outfile, '-y']
     listener.suproc = await create_subprocess_exec(*cmd, stderr=PIPE)
     code = await listener.suproc.wait()
     if code == 0:
