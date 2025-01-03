@@ -45,18 +45,18 @@ PAGE_NO      = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING   = "𝚄𝚙𝚕𝚘𝚊𝚍𝚒𝚗𝚐"
-    STATUS_DOWNLOADING = "𝙳𝚘𝚠𝚗𝚕𝚘𝚊𝚍𝚒𝚗𝚐"
-    STATUS_CLONING     = "𝙲𝚕𝚘𝚗𝚎"
-    STATUS_QUEUEDL     = "𝚀𝚞𝚎𝚞𝚎𝙳𝚕"
-    STATUS_QUEUEUP     = "𝚀𝚞𝚎𝚞𝚎𝚄𝚙"
-    STATUS_PAUSED      = "𝙿𝚊𝚞𝚜𝚎"
-    STATUS_ARCHIVING   = "𝙰𝚛𝚌𝚑𝚒𝚟𝚎"
-    STATUS_EXTRACTING  = "𝙴𝚡𝚝𝚛𝚊𝚌𝚝"
-    STATUS_SPLITTING   = "𝚂𝚙𝚕𝚒𝚝𝚝𝚒𝚗𝚐"
-    STATUS_METADATA    = "𝙰𝚍𝚍𝚒𝚗𝚐 𝙼𝚎𝚝𝚊𝚍𝚊𝚝𝚊 𝙿𝚘𝚠𝚎𝚛𝚎𝚍 𝙱𝚢 @𝙿𝙱𝚡1_𝙱𝚘𝚝𝚜"
-    STATUS_CHECKING    = "𝙲𝚑𝚎𝚌𝚔𝚄𝚙"
-    STATUS_SEEDING     = "𝚂𝚎𝚎𝚍𝚒𝚗𝚐"
+    STATUS_UPLOADING   = "Uploading"
+    STATUS_DOWNLOADING = "Downloading"
+    STATUS_CLONING     = "Cloning"
+    STATUS_QUEUEDL     = "QueueDL"
+    STATUS_QUEUEUP     = "QueueUp"
+    STATUS_PAUSED      = "Pause"
+    STATUS_ARCHIVING   = "Archiving"
+    STATUS_EXTRACTING  = "Extracting"
+    STATUS_SPLITTING   = "Splitting"
+    STATUS_METADATA    = "MetaEdit"
+    STATUS_CHECKING    = "CheckUp"
+    STATUS_SEEDING     = "Seeding"
 
 
 class setInterval:
