@@ -298,6 +298,8 @@ class WZMLStyle:
 ┠Ⓢ <b> Leech Suffix :</b> <code>{LSUFFIX}</code>
 ┠📦 <b> Leech Dumps :</b> <code>{LDUMP}</code>
 ┠📄 <b> Metadata Text :</b> <code>{LMETA}</code>
+┠🗃 <b> Leech Attachment :</b> <code>{LATTACH}</code>
+┠📀 <b> Leech Watermark :</b> <code>{WATERMARK}</code>
 ┖🌈 <b> Leech Remname :</b> <code>{LREMNAME}</code>
 
 <b><a href="https://t.me/MrSagarBots">❤️ Powered By MrSagarBots ❤️</a></b>'''
