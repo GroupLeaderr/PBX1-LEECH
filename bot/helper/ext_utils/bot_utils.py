@@ -54,9 +54,10 @@ class MirrorStatus:
     STATUS_ARCHIVING   = "Archiving"
     STATUS_EXTRACTING  = "Extracting"
     STATUS_SPLITTING   = "Splitting"
-    STATUS_METADATA    = "MetaEdit"
     STATUS_CHECKING    = "CheckUp"
     STATUS_SEEDING     = "Seeding"
+    STATUS_METADATA    = "Adding Metadata"
+    STATUS_WATERMARK   = "Watermark"
 
 
 class setInterval:
