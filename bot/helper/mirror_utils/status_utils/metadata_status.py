@@ -1,6 +1,3 @@
-
-#!/usr/bin/env python3
-
 from bot import LOGGER
 from bot.helper.ext_utils.bot_utils import EngineStatus, get_readable_file_size, MirrorStatus
 
@@ -49,7 +46,7 @@ class MetadataStatus:
             except:
                 pass
         self.__listener.suproc = 'cancelled'
-        await self.__listener.onUploadError('Metada edit stopped by user!')
+        await self.__listener.onUploadError('Metadata edit stopped by user!')
 
 
     def eng(self):
