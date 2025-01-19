@@ -1,13 +1,12 @@
-
 #!/usr/bin/env python3
 from tzlocal import get_localzone
 from pytz import timezone
 from datetime import datetime
-from inspect import signature
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram import Client as tgClient, enums, utils as pyroutils
 from pymongo import MongoClient
 from asyncio import Lock
+from inspect import signature
 from dotenv import load_dotenv, dotenv_values
 from threading import Thread
 from time import sleep, time
@@ -16,11 +15,12 @@ from os import remove as osremove, path as ospath, environ, getcwd
 from aria2p import API as ariaAPI, Client as ariaClient
 from qbittorrentapi import Client as qbClient
 from socket import setdefaulttimeout
-from logging import getLogger, Formatter, FileHandler, StreamHandler, INFO, ERROR, basicConfig, error as log_error, info as log_info, warning as log_warning
+from logging import getLogger, Formatter, FileHandler, StreamHandler, ERROR, INFO, basicConfig, error as log_error, info as log_info, warning as log_warning
 from uvloop import install
 
 #from faulthandler import enable as faulthandler_enable
 #faulthandler_enable()
+
 install()
 setdefaulttimeout(600)
 
@@ -140,11 +140,11 @@ TELEGRAM_HASH = environ.get('TELEGRAM_HASH', '')
 if len(TELEGRAM_HASH) == 0:
     log_error("TELEGRAM_HASH variable is missing! Exiting now")
     exit(1)
-
+    
 TIMEZONE = environ.get('TIMEZONE', '')
 if len(TIMEZONE) == 0:
     TIMEZONE = 'Asia/Kolkata'
-
+    
 def changetz(*args):
     return datetime.now(timezone(TIMEZONE)).timetuple()
 Formatter.converter = changetz
@@ -187,7 +187,7 @@ if len(SUDO_USERS) != 0:
     aid = SUDO_USERS.split()
     for id_ in aid:
         user_data[int(id_.strip())] = {'is_sudo': True}
-
+        
 BLACKLIST_USERS = environ.get('BLACKLIST_USERS', '')
 if len(BLACKLIST_USERS) != 0:
     for id_ in BLACKLIST_USERS.split():
@@ -206,11 +206,11 @@ LINKS_LOG_ID = '' if len(LINKS_LOG_ID) == 0 else int(LINKS_LOG_ID)
 MIRROR_LOG_ID = environ.get('MIRROR_LOG_ID', '')
 if len(MIRROR_LOG_ID) == 0:
     MIRROR_LOG_ID = ''
-
+    
 LEECH_LOG_ID = environ.get('LEECH_LOG_ID', '')
 if len(LEECH_LOG_ID) == 0:
     LEECH_LOG_ID = ''
-
+    
 EXCEP_CHATS = environ.get('EXCEP_CHATS', '')
 if len(EXCEP_CHATS) == 0:
     EXCEP_CHATS = ''
@@ -219,7 +219,7 @@ def wztgClient(*args, **kwargs):
     if 'max_concurrent_transmissions' in signature(tgClient.__init__).parameters:
         kwargs['max_concurrent_transmissions'] = 1000
     return tgClient(*args, **kwargs)
-            
+
 IS_PREMIUM_USER = False
 user = ''
 USER_SESSION_STRING = environ.get('USER_SESSION_STRING', '')
@@ -232,7 +232,7 @@ if len(USER_SESSION_STRING) != 0:
     except Exception as e:
         log_error(f"Failed making client from USER_SESSION_STRING : {e}")
         user = ''
-                
+
 MEGA_EMAIL = environ.get('MEGA_EMAIL', '')
 MEGA_PASSWORD = environ.get('MEGA_PASSWORD', '')
 if len(MEGA_EMAIL) == 0 or len(MEGA_PASSWORD) == 0:
@@ -241,7 +241,13 @@ if len(MEGA_EMAIL) == 0 or len(MEGA_PASSWORD) == 0:
     MEGA_PASSWORD = ''
 
 METADATA = environ.get('METADATA', '')
+if len(METADATA) == 0:
+    METADATA = ''
 
+ATTACHMENT_URL = environ.get('ATTACHMENT_URL', '')
+if len(ATTACHMENT_URL) == 0:
+    ATTACHMENT_URL = ''
+    
 GDTOT_CRYPT = environ.get('GDTOT_CRYPT', '')
 if len(GDTOT_CRYPT) == 0:
     GDTOT_CRYPT = ''
@@ -253,7 +259,7 @@ if len(JIODRIVE_TOKEN) == 0:
 REAL_DEBRID_API = environ.get('REAL_DEBRID_API', '')
 if len(REAL_DEBRID_API) == 0:
     REAL_DEBRID_API = ''
-
+    
 DEBRID_LINK_API = environ.get('DEBRID_LINK_API', '')
 if len(DEBRID_LINK_API) == 0:
     DEBRID_LINK_API = ''
@@ -285,7 +291,7 @@ if len(LEECH_FILENAME_CAPTION) == 0:
 LEECH_FILENAME_REMNAME = environ.get('LEECH_FILENAME_REMNAME', '')
 if len(LEECH_FILENAME_REMNAME) == 0:
     LEECH_FILENAME_REMNAME = ''
-
+    
 MIRROR_FILENAME_PREFIX = environ.get('MIRROR_FILENAME_PREFIX', '')
 if len(MIRROR_FILENAME_PREFIX) == 0:
     MIRROR_FILENAME_PREFIX = ''
@@ -375,6 +381,9 @@ WEB_PINCODE = WEB_PINCODE.lower() == 'true'
 AS_DOCUMENT = environ.get('AS_DOCUMENT', '')
 AS_DOCUMENT = AS_DOCUMENT.lower() == 'true'
 
+ENBALE_WATERMARK = environ.get('ENBALE_WATERMARK', '')
+ENBALE_WATERMARK = ENBALE_WATERMARK.lower() == 'true'
+
 USER_TD_MODE = environ.get('USER_TD_MODE', '')
 USER_TD_MODE = USER_TD_MODE.lower() == 'true'
 
@@ -414,7 +423,7 @@ if len(UPSTREAM_REPO) == 0:
 UPSTREAM_BRANCH = environ.get('UPSTREAM_BRANCH', '')
 if len(UPSTREAM_BRANCH) == 0:
     UPSTREAM_BRANCH = 'master'
-
+    
 UPGRADE_PACKAGES = environ.get('UPGRADE_PACKAGES', '')
 UPGRADE_PACKAGES = UPGRADE_PACKAGES.lower() == 'true'
 
@@ -470,7 +479,7 @@ PLAYLIST_LIMIT = '' if len(PLAYLIST_LIMIT) == 0 else int(PLAYLIST_LIMIT)
 FSUB_IDS = environ.get('FSUB_IDS', '')
 if len(FSUB_IDS) == 0:
     FSUB_IDS = ''
-
+    
 LINKS_LOG_ID = environ.get('LINKS_LOG_ID', '')
 LINKS_LOG_ID = '' if len(LINKS_LOG_ID) == 0 else int(LINKS_LOG_ID)
 
@@ -519,7 +528,7 @@ if len(AUTHOR_URL) == 0:
 TITLE_NAME = environ.get('TITLE_NAME', '')
 if len(TITLE_NAME) == 0:
     TITLE_NAME = 'WZ-M/L-X'
-
+    
 COVER_IMAGE = environ.get('COVER_IMAGE', '')
 if len(COVER_IMAGE) == 0:
     COVER_IMAGE = 'https://graph.org/file/60f9f8bcb97d27f76f5c0.jpg'
@@ -539,7 +548,7 @@ SET_COMMANDS = SET_COMMANDS.lower() == 'true'
 
 CLEAN_LOG_MSG = environ.get('CLEAN_LOG_MSG', '')
 CLEAN_LOG_MSG = CLEAN_LOG_MSG.lower() == 'true'
-
+    
 SHOW_EXTRA_CMDS = environ.get('SHOW_EXTRA_CMDS', '')
 SHOW_EXTRA_CMDS = SHOW_EXTRA_CMDS.lower() == 'true'
 
@@ -615,6 +624,8 @@ config_dict = {'ANIME_TEMPLATE': ANIME_TEMPLATE,
                'CMD_SUFFIX': CMD_SUFFIX,
                'DATABASE_URL': DATABASE_URL,
                'METADATA': METADATA,
+               'ATTACHMENT_URL': ATTACHMENT_URL,
+               'ENBALE_WATERMARK': ENBALE_WATERMARK,
                'REAL_DEBRID_API': REAL_DEBRID_API,
                'DEBRID_LINK_API': DEBRID_LINK_API,
                'FILELION_API': FILELION_API,
@@ -755,25 +766,17 @@ if ospath.exists('shorteners.txt'):
             if len(temp) == 2:
                 shorteners_list.append({'domain': temp[0],'api_key': temp[1]})
 
-PORT = environ.get('PORT')
-Popen(f"gunicorn web.wserver:app --bind 0.0.0.0:{PORT} --worker-class gevent", shell=True)
+if BASE_URL:
+    Popen(f"gunicorn web.wserver:app --bind 0.0.0.0:{BASE_URL_PORT} --worker-class gevent", shell=True)
 
-bot_cache['pkgs'] = ['zetra', 'xon-bit', 'ggrof', 'cross-suck', 'zetra|xon-bit|ggrof|cross-suck']
-
-srun([bot_cache['pkgs'][1], "-d", f"--profile={getcwd()}"])
+srun(["qbittorrent-nox", "-d", f"--profile={getcwd()}"])
 if not ospath.exists('.netrc'):
     with open('.netrc', 'w'):
         pass
 srun(["chmod", "600", ".netrc"])
 srun(["cp", ".netrc", "/root/.netrc"])
-trackers = check_output("curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','", shell=True).decode('utf-8').rstrip(',')
-with open("a2c.conf", "a+") as a:
-    if TORRENT_TIMEOUT:
-        a.write(f"bt-stop-timeout={TORRENT_TIMEOUT}\n")
-    a.write(f"bt-tracker=[{trackers}]")
-srun([bot_cache['pkgs'][0], "--conf-path=/usr/src/app/a2c.conf"])
-alive = Popen(["python3", "alive.py"])
-sleep(0.5)
+srun(["chmod", "+x", "aria.sh"])
+srun("./aria.sh", shell=True)
 if ospath.exists('accounts.zip'):
     if ospath.exists('accounts'):
         srun(["rm", "-rf", "accounts"])
@@ -788,7 +791,19 @@ aria2 = ariaAPI(ariaClient(host="http://localhost", port=6800, secret=""))
 
 
 def get_client():
-    return qbClient(host="localhost", port=8090, VERIFY_WEBUI_CERTIFICATE=False, REQUESTS_ARGS={'timeout': (30, 60)})
+    return qbClient(
+                host="localhost",
+                port=8090, 
+                VERIFY_WEBUI_CERTIFICATE=False, 
+                REQUESTS_ARGS={
+                            'timeout': (30, 60)
+                },
+                HTTPADAPTER_ARGS={
+                            "pool_maxsize": 500,
+                            "max_retries": 10,
+                            "pool_block": True,
+                },
+    )
 
 
 def aria2c_init():
